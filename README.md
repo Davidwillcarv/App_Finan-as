@@ -1,30 +1,42 @@
-# 💰 App Finanças - Controle Pessoal
+# 💰 FinanceApp - Gestão Financeira Pessoal
+### Desenvolvido por: **David Willian**
 
-Sistema completo de gestão financeira com autenticação de utilizadores, dashboard de resumo e controlo de transações (Receitas/Despesas).
+Este é um projeto Full Stack focado em organização financeira, integrando React, Node.js e MySQL.
 
-## 🚀 Funcionalidades
-* **Autenticação Segura**: Login validado contra base de dados MySQL.
-* **Dashboard Dinâmico**: Visualização de Saldo, Receitas e Despesas totais.
-* **Filtro por Utilizador**: Cada utilizador vê apenas os seus próprios dados financeiros.
-* **Gestão de Transações**: Adicionar e excluir registos em tempo real com atualização do saldo.
+---
 
-## 🛠️ Tecnologias Utilizadas
-* **Frontend**: React.js, Vite, React Router DOM.
-* **Backend**: Node.js, Express.js.
-* **Base de Dados**: MySQL.
-* **Estilização**: CSS3 Customizado.
+## 🚀 Funcionalidades Técnicas
 
-## 📋 Pré-requisitos
-* Node.js instalado.
-* Servidor MySQL (XAMPP/Workbench) ativo.
+* Autenticação Segura: Login validado contra banco de dados.
+* Filtro de Sessão: Identifica o usuário logado via localStorage.
+* Cálculo de Saldo Automático: Processa dinamicamente Receitas vs Despesas.
 
-## 🔧 Configuração e Instalação
+---
 
-### 1. Base de Dados
-Importe a estrutura das tabelas `users` e `expenses` no seu MySQL.
+## 🛠️ Como Instalar e Executar
+
+### 1. Banco de Dados (MySQL)
+Crie o banco `finance_db` e as tabelas:
+
+CREATE DATABASE finance_db;
+USE finance_db;
+CREATE TABLE users (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), email VARCHAR(255) UNIQUE, password VARCHAR(255));
+CREATE TABLE expenses (id INT AUTO_INCREMENT PRIMARY KEY, description VARCHAR(255), amount DECIMAL(10,2), type ENUM('receita', 'despesa'), user_email VARCHAR(255), FOREIGN KEY (user_email) REFERENCES users(email));
 
 ### 2. Backend
-```bash
 cd backend
 npm install
 node server.js
+
+### 3. Frontend
+cd frontend
+npm install
+npm run dev
+
+---
+
+## 📂 Estrutura
+* /frontend: Interface React.
+* /backend: API e Conexão MySQL.
+
+Desenvolvido por David Willian.
